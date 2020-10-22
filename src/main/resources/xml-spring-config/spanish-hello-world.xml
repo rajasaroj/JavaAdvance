@@ -4,12 +4,8 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:component-scan base-package="xmlconfig.example"/>
-
-    <import resource="classpath:xml-spring-config/helloworld-config.xml"/>
-
-    <bean id="xmlBeanedGreetingController" class="xmlconfig.example.controllers.XmlBeanedGreetingController">
-        <property name="helloWorldService" ref="helloWorldServiceDefaultImpl"/>
+    <bean id="helloWorldServiceDefaultImpl" factory-bean="helloWorldFactory" factory-method="createHelloWorldService" primary="true">
+        <constructor-arg value="es"/>
     </bean>
 
 </beans>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+
+    <bean id="helloWorldFactory" class="xmlconfig.example.services.HelloWorldFactory" />
+
+
+    <bean id="french" factory-bean="helloWorldFactory" factory-method="createHelloWorldService" >
+        <constructor-arg value="fr"/>
+    </bean>
+
+    <bean id="helloWorldRussian" factory-bean="helloWorldFactory" factory-method="createHelloWorldService" >
+        <constructor-arg value="ru"/>
+    </bean>
+
+
+    <!-- Note While defining bean for English and spanish do you remember we used some special annotations
+         @Bean, @Profile("<profile name>"), @primary etc
+         well you can define the same in xml aswell, below is the awesome xml way of doing the same.
+         Notice profile is the attribute which comes with <beans> tags in spring and not with <bean> tag.
+     -->
+    <!-- Since we are setting English and Spanish as default laguage for our application we will change the bean name to  helloWorldServiceDefaultImpl
+         So that if i want to switxh default language from Englissh -> Spanish or Spanish -> English in just have to set active profile setting in application.properties file
+         and it will load the bean acoordingly
+
+         if we dont do this change then we have to make change in application.properties files as well as this .xml config file as well and we might run into no bean defined issue
+         So it better to keep the single switch (active profile in properties file) to toggle between those languages.
+    -->
+
+    <beans profile="english">
+        <import resource="classpath:xml-spring-config/english-hello-world.xml"/>
+    </beans>
+
+
+
+
+    <!-- Note While defining bean for English and spanish do you remember we used some special annotations
+         @Bean, @Profile("<profile name>"), @primary etc
+         well you can define the same in xml aswell, below is the awesome xml way of doing the same.
+         Notice profile is the attribute which comes with <beans> tags in spring and not with <bean> tag.
+     -->
+    <!-- Since we are setting English and Spanish as default laguage for our application we will change the bean name to  helloWorldServiceDefaultImpl
+     So that if i want to switxh default language from Englissh -> Spanish or Spanish -> English in just have to set active profile setting in application.properties file
+     and it will load the bean acoordingly
+
+     if we dont do this change then we have to make change in application.properties files as well as this .xml config file as well and we might run into no bean defined issue
+     So it better to keep the single switch (active profile in properties file) to toggle between those languages.
+-->
+    <beans profile="spanish">
+        <import resource="classpath:xml-spring-config/spanish-hello-world.xml"/>
+    </beans>
+
+</beans>

@@ -13,7 +13,7 @@ public class GreetingController {
     HelloWorldService helloWorldService;
 
     public void display() {
-        helloWorldService.sayHello();
+        System.out.println(helloWorldService.sayHello());
     }
 
 }

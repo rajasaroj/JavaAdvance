@@ -18,7 +18,7 @@ public class XmlBeanedGreetingController {
     }
 
     public void display() {
-        helloWorldService.sayHello();
+        System.out.println(helloWorldService.sayHello());
     }
 
 }
