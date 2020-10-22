@@ -7,6 +7,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ImportResource;
 import xmlconfig.example.controllers.GreetingController;
+import xmlconfig.example.controllers.XmlBeanedGreetingController;
 
 @SpringBootApplication
 @ImportResource("classpath:/xml-spring-config/spring-config.xml")
@@ -17,5 +18,9 @@ public class XmlConfigDependencyInjectionApplication {
 
         GreetingController greetingController = (GreetingController) ctx.getBean("greetingController");
         greetingController.display();
+
+        XmlBeanedGreetingController xmlBeanedGreetingController = (XmlBeanedGreetingController) ctx.getBean("xmlBeanedGreetingController");
+        xmlBeanedGreetingController.display();
+
     }
 }
