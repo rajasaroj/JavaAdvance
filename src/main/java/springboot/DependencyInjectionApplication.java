@@ -1,8 +1,6 @@
 package springboot;
 
-import com.example.demo.MyAppApplication;
 import guru.springframework.controllers.GreetingController;
-import guru.springframework.services.HelloWorldService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -17,6 +15,8 @@ public class DependencyInjectionApplication {
 
         /*HelloWorldService obj = (HelloWorldService) ctx.getBean("demoService");
         obj.sayHello();*/
+
+
 
         GreetingController greetingController = (GreetingController) ctx.getBean("greetingController");
         greetingController.display();
